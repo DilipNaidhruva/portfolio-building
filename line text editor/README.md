@@ -4,8 +4,8 @@ Built for: Portfolio Building Studio Course — Coding Competition (3rd Semester
 
 ## Team
 - Member 1: _<M.Sam Priyan>_
-- Member 2: _<Dilip Naidhruva>_
-- Member 3: _<Shri Ram Ambig>_
+- Member 2: _<DilipNaidhruva>_
+- Member 3: _<Shrisam_Ambig>_
 
 
 ## Features Implemented
