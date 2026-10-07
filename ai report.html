@@ -1,0 +1,748 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dilip NK | CSE Student</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #080b12;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f5f7fb;
+      --muted: #a7afc0;
+      --purple: #7c5cff;
+      --blue: #00d4ff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(124, 92, 255, 0.2), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(0, 212, 255, 0.12), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(90%, 1100px);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(8, 11, 18, 0.75);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      min-height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      margin-bottom: 25px;
+      font-size: 0.9rem;
+    }
+
+    .badge::before {
+      content: "●";
+      color: #39e58c;
+      margin-right: 8px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    .gradient {
+      background: linear-gradient(100deg, var(--purple), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 21px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary {
+      background: linear-gradient(100deg, var(--purple), #6246ea);
+      border: none;
+    }
+
+    .secondary {
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -2px;
+      margin-bottom: 40px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+    }
+
+    .info-card {
+      padding: 30px;
+    }
+
+    .info-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      padding: 30px;
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(124,92,255,0.6);
+    }
+
+    .project-number {
+      color: var(--purple);
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin: 12px 0;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .project-link {
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      padding: 30px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      margin: auto auto 18px;
+      border-radius: 15px;
+      background: linear-gradient(
+        135deg,
+        rgba(124,92,255,0.25),
+        rgba(0,212,255,0.15)
+      );
+      font-size: 1.4rem;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    /* CONTACT */
+
+    .contact-card {
+      padding: 45px;
+      text-align: center;
+    }
+
+    .contact-card p {
+      max-width: 600px;
+      margin: auto auto 25px;
+      color: var(--muted);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      .about-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-container {
+        min-height: 60px;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        font-size: 0.78rem;
+        gap: 9px;
+      }
+
+      .hero h1 {
+        font-size: 3.4rem;
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .contact-card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="container nav-container">
+
+      <a href="#" class="logo">
+        Dilip<span>.</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+    <div class="container">
+
+      <div class="hero-content">
+
+        <span class="badge">
+          3rd Semester CSE Student
+        </span>
+
+        <h1>
+          Hi, I'm
+          <span class="gradient">Dilip NK.</span>
+        </h1>
+
+        <p>
+          I'm a Computer Science and Engineering student at
+          <strong>REVA University</strong>, currently in my 3rd semester.
+          I enjoy coding, solving problems, learning new technologies,
+          and building projects.
+        </p>
+
+        <div class="buttons">
+
+          <a href="#projects" class="btn primary">
+            View Projects →
+          </a>
+
+          <a href="#contact" class="btn secondary">
+            Contact Me
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-label">
+        01 — ABOUT
+      </div>
+
+      <h2 class="section-title">
+        Who I am.
+      </h2>
+
+      <div class="about-grid">
+
+        <div class="about-text">
+
+          <p>
+            I'm <strong>Dilip NK</strong>, a Computer Science and
+            Engineering student at REVA University.
+          </p>
+
+          <p>
+            I'm currently in my third semester and working on improving
+            my programming fundamentals, problem-solving abilities,
+            and software development skills.
+          </p>
+
+          <p>
+            I enjoy experimenting with code, working on personal projects,
+            solving programming problems, and learning how different
+            technologies work together.
+          </p>
+
+        </div>
+
+
+        <div class="card info-card">
+
+          <div class="info-item">
+            <small>Name</small>
+            <strong>Dilip NK</strong>
+          </div>
+
+          <div class="info-item">
+            <small>USN / Student ID</small>
+            <strong>R25EJ029</strong>
+          </div>
+
+          <div class="info-item">
+            <small>Course</small>
+            <strong>B.Tech — Computer Science & Engineering</strong>
+          </div>
+
+          <div class="info-item">
+            <small>University</small>
+            <strong>REVA University</strong>
+          </div>
+
+          <div class="info-item">
+            <small>Semester</small>
+            <strong>3rd Semester</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <div class="section-label">
+        02 — PROJECTS
+      </div>
+
+      <h2 class="section-title">
+        What I've been building.
+      </h2>
+
+
+      <div class="projects-grid">
+
+
+        <article class="card project-card">
+
+          <span class="project-number">
+            PROJECT 01
+          </span>
+
+          <h3>
+            Hello World
+          </h3>
+
+          <p>
+            A beginner-friendly repository documenting my early
+            programming journey and experiments with GitHub.
+          </p>
+
+          <a
+            class="project-link"
+            href="https://github.com/HarshilNair/hello-world"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub ↗
+          </a>
+
+        </article>
+
+
+        <article class="card project-card">
+
+          <span class="project-number">
+            PROJECT 02
+          </span>
+
+          <h3>
+            LeetCode Solutions
+          </h3>
+
+          <p>
+            A collection of programming solutions created while
+            practicing algorithms, data structures, and problem solving.
+          </p>
+
+          <a
+            class="project-link"
+            href="https://github.com/HarshilNair/leetcode-solutions"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Solutions ↗
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <div class="container">
+
+      <div class="section-label">
+        03 — SKILLS
+      </div>
+
+      <h2 class="section-title">
+        What I work with.
+      </h2>
+
+
+      <div class="skills-grid">
+
+
+        <div class="card skill-card">
+
+          <div class="skill-icon">
+            🐍
+          </div>
+
+          <h3>
+            Python
+          </h3>
+
+          <p>
+            Programming & Problem Solving
+          </p>
+
+        </div>
+
+
+        <div class="card skill-card">
+
+          <div class="skill-icon">
+            Git
+          </div>
+
+          <h3>
+            Git
+          </h3>
+
+          <p>
+            Version Control & GitHub
+          </p>
+
+        </div>
+
+
+        <div class="card skill-card">
+
+          <div class="skill-icon">
+            SQL
+          </div>
+
+          <h3>
+            SQL
+          </h3>
+
+          <p>
+            Databases & Data Management
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="section-label">
+        04 — CONTACT
+      </div>
+
+      <div class="card contact-card">
+
+        <h2 class="section-title">
+          Let's connect.
+        </h2>
+
+        <p>
+          Want to collaborate, discuss a project, or talk about
+          coding and technology? Feel free to reach out.
+        </p>
+
+        <div class="contact-links">
+
+          <a
+            href="https://github.com/HarshilNair"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn primary"
+          >
+            GitHub ↗
+          </a>
+
+          <a
+            href="mailto:your.email@example.com"
+            class="btn secondary"
+          >
+            Email Me
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-content">
+
+      <span>
+        © 2026 Dilip NK
+      </span>
+
+      <span>
+        R25EJ029 · REVA University
+      </span>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
+```
